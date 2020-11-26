@@ -17,6 +17,9 @@ public interface TestConfiguration extends Config {
     @DefaultValue("false")
     Boolean enableVNC();
 
+    @DefaultValue("false")
+    Boolean enableVideo();
+
     @DefaultValue("chrome")
     String browser();
 

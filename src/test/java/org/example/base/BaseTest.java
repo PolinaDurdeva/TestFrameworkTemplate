@@ -39,10 +39,9 @@ public class BaseTest {
         LOGGER.info("Setting up remote driver {}", testConfiguration.browser());
         Configuration.remote = testConfiguration.remoteHost();
         Configuration.driverManagerEnabled = false;
-        if (testConfiguration.enableVNC()) {
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("enableVNC", testConfiguration.enableVNC());
-            Configuration.browserCapabilities = capabilities;
-        }
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("enableVNC", testConfiguration.enableVNC());
+        capabilities.setCapability("enableVideo", testConfiguration.enableVideo());
+        Configuration.browserCapabilities = capabilities;
     }
 }
