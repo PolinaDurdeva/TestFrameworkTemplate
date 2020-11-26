@@ -1,7 +1,6 @@
 package org.example.todo;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
 import org.example.action.Navigation;
 import org.example.action.TodoAction;

@@ -13,7 +13,7 @@ public class CompletingTodoTest extends BaseTest {
     private final Navigation navigation = new Navigation();
 
     @Test
-    @Description("Verify that a user is able to delete a todo")
+    @Description("Verify that a user is able to complete a todo")
     public void testMarkTodoAsCompleted() {
         final String todoText = "Buy a new book";
         navigation.openTodoPage();
@@ -25,6 +25,24 @@ public class CompletingTodoTest extends BaseTest {
                 .markAsCompleted(todoText)
                 .getCompleted()
                 .shouldHave(CollectionCondition.size(1));
+    }
+
+    @Test
+    @Description("Verify that a user is able to complete all todo with one click")
+    public void testCompletedAllTodo() {
+        final String todoText = "Buy a new book";
+        final String todoText2 = "Cook a dinner";
+        navigation.openTodoPage();
+        baseTodoAction
+                .addNewTodo(todoText)
+                .addNewTodo(todoText2);
+        baseTodoAction
+                .getCompleted()
+                .shouldHave(CollectionCondition.size(0));
+        baseTodoAction
+                .toggleAllTodo()
+                .getCompleted()
+                .shouldHave(CollectionCondition.size(2));
     }
 
 }
