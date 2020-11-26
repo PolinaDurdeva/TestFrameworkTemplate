@@ -13,7 +13,7 @@
   <url>http://www.example.com</url>
 
   <properties>
-    <selenide.version>5.15.0</selenide.version>
+    <selenide.version>5.16.2</selenide.version>
     <lombok.version>1.18.10</lombok.version>
     <jdk.version>13</jdk.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
