@@ -6,7 +6,6 @@ import org.example.action.FilterAction;
 import org.example.action.Navigation;
 import org.example.action.TodoAction;
 import org.example.base.BaseTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -27,7 +26,6 @@ public class FilterTodoListTest extends BaseTest {
                 .addNewTodo(todoText2)
                 .addNewTodo(todoText3)
                 .markAsCompleted(todoText3);
-
     }
 
     @Test
@@ -38,7 +36,6 @@ public class FilterTodoListTest extends BaseTest {
                 .getTodoList()
                 .shouldHave(CollectionCondition.size(1));
     }
-
 
     @Test
     @Description("Verify that a user is able filter only active todo")
