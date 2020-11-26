@@ -69,7 +69,7 @@ mvn clean package -DskipTests=true
     docker-compose down
 ```
 
-###How to change xml suite to run
+### How to change xml suite to run
  
 Go to docker-compose.yml. Change **SUITE** variable:
 
@@ -78,7 +78,7 @@ Go to docker-compose.yml. Change **SUITE** variable:
 >  SUITE: test-suite.xml
 
 
-###How to enable video
+### How to enable video
 
 1. Pull image manually:
 ```bash
@@ -90,6 +90,6 @@ Go to `testConfig.properties` and change `enableVideo = true`
 Run your test in containers and check folder config/video
 
 
-###How to enable VNC
+### How to enable VNC
 
 Go to `testConfig.properties` and change `enableVNC = true`
