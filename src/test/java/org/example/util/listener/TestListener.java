@@ -1,28 +1,18 @@
 package org.example.util.listener;
 
-import static com.codeborne.selenide.Screenshots.takeScreenShotAsFile;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static com.codeborne.selenide.WebDriverRunner.hasWebDriverStarted;
-
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import io.qameta.allure.Attachment;
 import io.qameta.allure.selenide.AllureSelenide;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
-import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.ThreadContext;
-import org.openqa.selenium.logging.LogEntries;
-import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.logging.Logs;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 import org.testng.ITestContext;
@@ -30,9 +20,9 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 public class TestListener implements ITestListener, ISuiteListener {
+
     private static final Logger LOGGER = LogManager.getLogger(TestListener.class);
     private static final String ALLURE_ENV_PATH = "target/allure-results/environment.properties";
-    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Override
     public void onStart(ISuite suite) {
@@ -79,10 +69,6 @@ public class TestListener implements ITestListener, ISuiteListener {
     public void onTestFailure(ITestResult result) {
         LOGGER.info("Test Failed: " + result.getName());
         LOGGER.error(result.getThrowable());
-        if (hasWebDriverStarted()) {
-            attachScreenshotToReport();
-            attachBrowserLogs();
-        }
         ThreadContext.clearStack();
     }
 
@@ -95,29 +81,6 @@ public class TestListener implements ITestListener, ISuiteListener {
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
 
-    }
-
-    @SuppressWarnings("UnusedReturnValue")
-    @Attachment(value = "SCREENSHOT", type = "image/png")
-    private byte[] attachScreenshotToReport() {
-        File screenshot = takeScreenShotAsFile();
-        return screenshot == null ? null : transformFileToBytes(screenshot);
-    }
-
-    @SuppressWarnings("UnusedReturnValue")
-    @Attachment(value = "BROWSER-LOG", type = "text/html")
-    private String attachBrowserLogs() {
-        Logs logs = getWebDriver().manage().logs();
-        LogEntries logEntries = logs.get(LogType.BROWSER);
-        return gson.toJson(logEntries.toJson());
-    }
-
-    private byte[] transformFileToBytes(File file) {
-        try {
-            return FileUtils.readFileToByteArray(file);
-        } catch (IOException ignored) {
-        }
-        return null;
     }
 
     private void attachEnvironmentConfiguration() {
