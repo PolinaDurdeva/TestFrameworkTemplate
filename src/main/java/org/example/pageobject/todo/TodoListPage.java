@@ -11,7 +11,7 @@ public class TodoListPage implements Page {
 
     private final SelenideElement newTodoField = $(".new-todo");
     private final ElementsCollection todoList = $$(".todo-list .todo");
-    private final SelenideElement toggleAllButton = $("#toggle-all");
+    private final SelenideElement toggleAllButton = $("label[for=toggle-all]");
     private final ElementsCollection completedTodoList = $$(".todo-list .completed");
 
     private static final String TOGGLE_CHECKBOX_KEY = ".toggle";
