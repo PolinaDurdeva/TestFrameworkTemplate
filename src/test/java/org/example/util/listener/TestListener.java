@@ -2,8 +2,6 @@ package org.example.util.listener;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import io.qameta.allure.selenide.AllureSelenide;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -80,7 +78,6 @@ public class TestListener implements ITestListener, ISuiteListener {
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-
     }
 
     private void attachEnvironmentConfiguration() {

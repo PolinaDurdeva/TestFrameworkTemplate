@@ -1,5 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Regression Suite" parallel="methods" thread-count="3">
-  <test name="Regressio">
+<suite name="Example suite" parallel="methods">
+  <test name="Regression">
+    <classes>
+      <class name="org.example.todo.AddingNewTodoTest"></class>
+      <class name="org.example.todo.CompletingTodoTest"></class>
+      <class name="org.example.todo.FilterTodoListTest"></class>
+      <class name="org.example.todo.RemovingTodoTest"></class>
+    </classes>
   </test>
 </suite>
